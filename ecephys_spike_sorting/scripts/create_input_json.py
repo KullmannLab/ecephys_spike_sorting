@@ -25,7 +25,7 @@ def createInputJson(output_file,
                     extracted_data_directory=None,
                     kilosort_output_directory=None,
                     ks_make_copy=False,
-                    probe_type='3A',
+                    probe_type='NP1',
                     catGT_run_name='test',
                     gate_string='0',
                     trigger_string='0,0',
@@ -67,26 +67,29 @@ def createInputJson(output_file,
                     ):
 
     # hard coded paths to code on your computer and system
-    ecephys_directory = r'C:\Users\colonellj\Documents\ecephys_anaconda\ecephys_spike_sorting\ecephys_spike_sorting'
+    ecephys_directory = r'C:\Users\mweston\Documents\GitHub\ecephys_spike_sorting\ecephys_spike_sorting'
     
     # location of kilosor respository and kilosort version
 
-    kilosort_repository = r'C:\Users\colonellj\Documents\KS20_for_preprocessed_data'
+    kilosort_repository = r'C:/Users/mweston/Documents/GitHub/Kilosort'
+    KS2ver = '3.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
 
-    KS2ver = '2.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
-    
+																							  
+	
     # KS 3.0 does not yet output pcs.
     if KS2ver == '3.0':
         include_pcs = False  # set to false for KS2ver = '3.0'
+    else:
+        include_pcs = True
     
     npy_matlab_repository = r'C:\Users\colonellj\Documents\npy-matlab-master'
-    catGTPath = r'C:\Users\colonellj\Documents\CatGT-win'
-    tPrime_path=r'C:\Users\colonellj\Documents\TPrime-win'
-    cWaves_path=r'C:\Users\colonellj\Documents\C_Waves-win'
+    catGTPath = r'F:\SpikeGLX_tools\CatGTWin41App\CatGT-win'
+    tPrime_path=r'F:\SpikeGLX_tools\TPrimeWinApp1.8\TPrime-win'
+    cWaves_path=r'F:\SpikeGLX_tools\C_WavesWinApp2.5\C_Waves-win'
     
      
     # for config files and kilosort working space
-    kilosort_output_tmp = r'C:\kilosort_datatemp' 
+    kilosort_output_tmp = r'W:\kilosort_datatemp'
     
     
     # derived directory names
@@ -227,7 +230,7 @@ def createInputJson(output_file,
             "diff_thresh" : -0.06,
             "freq_range" : [0, 10],
             "max_freq" : 150,
-            "saline_range_um" : [3700, 3800],
+            "saline_range_um" : [3700, 3820],
             "n_passes" : 10,
             "air_gap_um" : 1000,
             "time_interval" : 5,
@@ -309,7 +312,7 @@ def createInputJson(output_file,
 
 # as implemented, "within_unit_overlap window" must be >= "between unit overlap window"
         "ks_postprocessing_params" : {
-            "align_avg_waveform" : False,              
+            "align_avg_waveform" : False,
             "remove_duplicates" : True,
             "cWaves_path" : cWaves_path,
             "within_unit_overlap_window" : 0.000333,
