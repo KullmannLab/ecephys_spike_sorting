@@ -60,31 +60,33 @@ def createInputJson(output_file,
                     ks_nblocks = 5,
                     ks_CAR = 0,
                     c_Waves_snr_um = 160,
+                    wm_spread_thresh = 0.12,
+                    wm_site_range = 16,
                     qm_isi_thresh = 1.5/1000,
                     include_pcs = True
                     ):
 
     # hard coded paths to code on your computer and system
-    ecephys_directory = r'D:\ecephys_fork\ecephys_spike_sorting\ecephys_spike_sorting'
+    ecephys_directory = r'C:\Users\colonellj\Documents\ecephys_anaconda\ecephys_spike_sorting\ecephys_spike_sorting'
     
     # location of kilosor respository and kilosort version
 
-    kilosort_repository = r'C:\Users\labadmin\Documents\jic\KS3_release\Kilosort'
+    kilosort_repository = r'C:\Users\colonellj\Documents\KS20_for_preprocessed_data'
 
-    KS2ver = '3.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
+    KS2ver = '2.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
     
     # KS 3.0 does not yet output pcs.
     if KS2ver == '3.0':
         include_pcs = False  # set to false for KS2ver = '3.0'
     
-    npy_matlab_repository = r'C:\Users\labadmin\Documents\jic\npy-matlab-master'
-    catGTPath = r'C:\Users\labadmin\Documents\jic\CatGT-win'
-    tPrime_path=r'C:\Users\labadmin\Documents\jic\TPrime-win'
-    cWaves_path=r'C:\Users\labadmin\Documents\jic\C_Waves-win'
+    npy_matlab_repository = r'C:\Users\colonellj\Documents\npy-matlab-master'
+    catGTPath = r'C:\Users\colonellj\Documents\CatGT-win'
+    tPrime_path=r'C:\Users\colonellj\Documents\TPrime-win'
+    cWaves_path=r'C:\Users\colonellj\Documents\C_Waves-win'
     
      
     # for config files and kilosort working space
-    kilosort_output_tmp = r'D:\kilosort_datatemp' 
+    kilosort_output_tmp = r'C:\kilosort_datatemp' 
     
     
     # derived directory names
@@ -277,6 +279,33 @@ def createInputJson(output_file,
                 "nblocks" : ks_nblocks
             }
         },
+            
+        "pykilosort_helper_params" : {
+            "preprocessing_function" : 'kilosort2',           
+            "copy_fproc" : ks_copy_fproc,
+            "fproc" : fproc_str,
+            "seed" : ks_LTseed,
+            "ks2_mode" : False,
+            "perform_drift_registration" : True,
+            "car" : ks_CAR,
+            "Th" : ks_Th,
+            "ThPre" : 8,
+            "lam" : 10,
+            "AUCsplit" : 0.9,
+            "minFR" : 1/50.,
+            "momentum" : '[20 400]',
+            "sig_datashift" : 20,
+            "sigmaMask" : 30,
+            "fshigh" : 300,
+            "fslow" : 10000,
+            "minfr_goodchannels" : 0,
+            "whiteningRange" : ks_whiteningRange,            
+            "deterministic_mode" : True,            
+            "nblocks" : ks_nblocks,
+            "doFilter" : ks_doFilter
+
+        },
+            
 
 # as implemented, "within_unit_overlap window" must be >= "between unit overlap window"
         "ks_postprocessing_params" : {
@@ -290,18 +319,18 @@ def createInputJson(output_file,
             "include_pcs" : include_pcs
         },
 
-        "mean_waveform_params" : {
-        
+        "mean_waveform_params" : {     
             "mean_waveforms_file" : os.path.join(kilosort_output_directory, 'mean_waveforms.npy'),
             "samples_per_spike" : 82,
             "pre_samples" : 20,
             "num_epochs" : 1,           #epochs not implemented for c_waves
             "spikes_per_epoch" : 1000,
-            "spread_threshold" : 0.12,
-            "site_range" : 16,    
+            "spread_threshold" : wm_spread_thresh,
+            "site_range" : wm_site_range,    
             "cWaves_path" : cWaves_path,
             "use_C_Waves" : True,
-            "snr_radius" : c_waves_radius_sites       
+            "snr_radius" : c_waves_radius_sites,
+            "snr_radius_um" : c_Waves_snr_um
         },
             
 
