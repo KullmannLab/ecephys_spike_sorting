@@ -58,7 +58,7 @@ npx_directory = r'Y:\NP_test'
 #           these strings must match a key in the param dictionaries above.
 
 run_specs = [									
-						['NP26_20200312_D14_imec0RB_imec1LB', '1', '0,0', '0,1', ['cortex','cortex'] ]
+						['NP26_20200312_D14_imec0RB_imec1LB', '1', '0,0', '1', ['cortex','cortex'] ]
 ]
 
 # ------------------
@@ -72,7 +72,7 @@ catGT_dest = r'F:\ecephys_out'
 # ------------
 # CatGT params
 # ------------
-run_CatGT = True   # set to False to sort/process previously processed data.
+run_CatGT = False   # set to False to sort/process previously processed data.
 
 
 # CAR mode for CatGT. Must be equal to 'None', 'gbldmx', 'gblcar' or 'loccar'
@@ -123,6 +123,7 @@ ks_nblocks = 1      # for KS2.5 and KS3; 1 for rigid registration in drift corre
 # This parameter is not implemented in standard versions of kilosort.
 ks_doFilter = 0
 
+ks_output_tag = '_ks3'					 
 
 # ----------------------
 # C_Waves snr radius, um
@@ -152,12 +153,12 @@ toStream_sync_params = 'imec0' # should be ni, imec<probe index>. or obx<obx ind
 # ---------------
 # List of modules to run per probe; CatGT and TPrime are called once for each run.
 modules = [
-            'kilosort_helper',
-            'kilosort_postprocessing',
+            #'kilosort_helper',
+            #'kilosort_postprocessing',
             #'noise_templates',    
             #'psth_events',
-            'mean_waveforms',
-            'quality_metrics'
+            #'mean_waveforms',
+            #'quality_metrics'
 			]
 
 json_directory = r'F:\ecephys_out\json_files'
@@ -291,7 +292,7 @@ for spec in run_specs:
         fileName = run_str + '_tcat.imec' + prb + '.ap.bin'
         continuous_file = os.path.join(data_directory[i], fileName)
  
-        outputName = 'imec' + prb + '_ks2'
+        outputName = 'imec' + prb + ks_output_tag
 
         # kilosort_postprocessing and noise_templates moduules alter the files
         # that are input to phy. If using these modules, keep a copy of the
@@ -381,6 +382,7 @@ for spec in run_specs:
                                            spikeGLX_data = True,
                                            input_meta_path = input_meta_fullpath,
                                            catGT_run_name = spec[0],
+										   gate_string = spec[1],
     									   kilosort_output_directory=kilosort_output_dir,
                                            extracted_data_directory = catGT_dest,                                           
                                            tPrime_ni_ex_list = ni_extract_string,
@@ -389,7 +391,8 @@ for spec in run_specs:
                                            toStream_sync_params = toStream_sync_params,
                                            tPrime_3A = False,
                                            toStream_path_3A = ' ',
-                                           fromStream_list_3A = list()
+                                           fromStream_list_3A = list(),
+										   ks_output_tag = ks_output_tag																		
                                            ) 
         
         command = sys.executable + " -W ignore -m ecephys_spike_sorting.modules." + 'tPrime_helper' + " --input_json " + input_json \

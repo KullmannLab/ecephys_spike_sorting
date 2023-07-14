@@ -61,7 +61,7 @@ def createInputJson(output_file,
                     ks_templateRadius_um = 163,
                     ks_nblocks = 5,
                     ks_CAR = 0,
-                    ks_output_tag = 'ks2',
+                    ks_output_tag = '_ks2',
                     c_Waves_snr_um = 160,
                     wm_spread_thresh = 0.12,
                     wm_site_range = 16,
@@ -70,26 +70,26 @@ def createInputJson(output_file,
                     ):
 
     # hard coded paths to code on your computer and system
-    ecephys_directory = r'C:\Users\colonellj\Documents\ecephys_anaconda\ecephys_spike_sorting\ecephys_spike_sorting'
+    ecephys_directory = r'C:\Users\mweston\Documents\GitHub\ecephys_spike_sorting\ecephys_spike_sorting'
     
     # location of kilosor respository and kilosort version
 
-    kilosort_repository = r'C:\Users\colonellj\Documents\KS2_largetemplate\Kilosort2'
+    kilosort_repository = r'C:\Users\mweston\Documents\GitHub\Kilosort'
 
-    KS2ver = '2.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
+    KS2ver = '3.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
     
     # KS 3.0 does not yet output pcs.
     if KS2ver == '3.0':
         include_pcs = False  # set to false for KS2ver = '3.0'
     
-    npy_matlab_repository = r'C:\Users\colonellj\Documents\npy-matlab-master'
-    catGTPath = r'C:\Users\colonellj\Documents\CatGT-win'
-    tPrime_path=r'C:\Users\colonellj\Documents\TPrime-win'
-    cWaves_path=r'C:\Users\colonellj\Documents\C_Waves-win'
+    npy_matlab_repository = r'C:\Users\mweston\Documents\GitHub\npy-matlab'
+    catGTPath = r'F:\SpikeGLX_tools\CatGTWin41App\CatGT-win'
+    tPrime_path=r'F:\SpikeGLX_tools\TPrimeWinApp1.8\TPrime-win'
+    cWaves_path=r'F:\SpikeGLX_tools\C_WavesWinApp2.5\C_Waves-win'
     
      
     # for config files and kilosort working space
-    kilosort_output_tmp = r'C:\kilosort_datatemp' 
+    kilosort_output_tmp = r'F:\kilosort_datatemp'
     
     
     # derived directory names
@@ -235,7 +235,7 @@ def createInputJson(output_file,
             "diff_thresh" : -0.06,
             "freq_range" : [0, 10],
             "max_freq" : 150,
-            "saline_range_um" : [3700, 3800],
+            "saline_range_um" : [3700, 3820],
             "n_passes" : 10,
             "air_gap_um" : 1000,
             "time_interval" : 5,
@@ -389,7 +389,7 @@ def createInputJson(output_file,
                 "toStream_path_3A" : toStream_path_3A,
                 "fromStream_list_3A" : fromStream_list_3A,
                 "psth_ex_str": event_ex_param_str,
-                "sort_out_tag": ks_output_tag
+                "ks_output_tag": ks_output_tag
         },  
                 
         "psth_events": {

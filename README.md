@@ -106,6 +106,13 @@ Build the environment -- it will use the Pipfile located in this directory, and 
     (.venv) $ pip install setuptools==59.8.0
     (.venv) $ pip install .
 ```
+
+On Anaconda or Miniconda using Windows if you get a TLs/SSL error when attempting to "pipenv install", copy:
+libcrypto-1_1-x64.*
+libssl-1_1-x64.*
+from \Anaconda3\Library\bin to \Anaconda3\DLLs.
+https://github.com/conda/conda/issues/9746
+
 ### Set up to run MATLAB from Python
 
 The python version and MATLAB version need to be compatible. For Python 3.8, this requires MATLAB 2020b or later. The code has been tested only with MATLAB 2021b.

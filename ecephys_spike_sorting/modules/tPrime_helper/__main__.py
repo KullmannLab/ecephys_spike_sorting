@@ -36,6 +36,7 @@ def call_TPrime(args):
     run_name = args['catGT_helper_params']['run_name'] + '_g' + args['catGT_helper_params']['gate_string']
     run_dir_name = 'catgt_' + run_name
     prb_dir_prefix = run_name + '_imec'
+    ks_output_tag = args['tPrime_helper_params']['ks_output_tag']
     
     run_directory = os.path.join( catGT_dest, run_dir_name ) # extracted edge files for aux data reside in run directory
     sync_period = args['tPrime_helper_params']['sync_period']
@@ -63,7 +64,7 @@ def call_TPrime(args):
         if toStream_js == 2:
             # if toStream is an imec probe, create the file of spike times in sec
             prb_dir = prb_dir_prefix + str(toStream_ip)
-            ks_outdir = 'imec' + str(toStream_ip) + '_ks2'        
+            ks_outdir = 'imec' + str(toStream_ip) + ks_output_tag
             st_file = os.path.join(run_directory, prb_dir, ks_outdir, 'spike_times.npy')
             # convert to seconds; if bNPY = True, returned file is an npy file
             # otherwise, text.
@@ -79,7 +80,7 @@ def call_TPrime(args):
         for i, id in enumerate(from_list_ids):
             if id[0] == 2:      # imec stream
                 prb_dir = prb_dir_prefix + str(id[1])
-                ks_outdir = 'imec' + str(id[1]) + '_ks2'
+                ks_outdir = 'imec' + str(id[1]) + ks_output_tag
                 st_file = os.path.join(run_directory, prb_dir, ks_outdir, 'spike_times.npy')
                 # convert to seconds; if bNPY = True, returned file is an npy file
                 # otherwise, text.
@@ -155,7 +156,7 @@ def call_TPrime(args):
     if len(extract_str) > 0:
         prbDir_list = create_prbDir_list(run_directory, prb_dir_prefix)
         create_PSTH_events( all_list, out_list, prbDir_list, extract_str, \
-                           args['tPrime_helper_params']['sort_out_tag'] )
+                           args['tPrime_helper_params']['ks_output_tag'] )
 
     execution_time = time.time() - start
 
