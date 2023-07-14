@@ -71,7 +71,7 @@ def createInputJson(output_file,
     
     # location of kilosor respository and kilosort version
 
-    kilosort_repository = r'C:/Users/mweston/Documents/GitHub/Kilosort'
+    kilosort_repository = r'C:\Users\mweston\Documents\GitHub\Kilosort'
     KS2ver = '3.0'      # must equal '3.0', '2.5' or '2.0', and match the kiilosort_repository
 
 																							  
@@ -82,14 +82,14 @@ def createInputJson(output_file,
     else:
         include_pcs = True
     
-    npy_matlab_repository = r'C:\Users\colonellj\Documents\npy-matlab-master'
+    npy_matlab_repository = r'C:\Users\mweston\Documents\GitHub\npy-matlab'
     catGTPath = r'F:\SpikeGLX_tools\CatGTWin41App\CatGT-win'
     tPrime_path=r'F:\SpikeGLX_tools\TPrimeWinApp1.8\TPrime-win'
     cWaves_path=r'F:\SpikeGLX_tools\C_WavesWinApp2.5\C_Waves-win'
     
      
     # for config files and kilosort working space
-    kilosort_output_tmp = r'W:\kilosort_datatemp'
+    kilosort_output_tmp = r'F:\kilosort_datatemp'
     
     
     # derived directory names

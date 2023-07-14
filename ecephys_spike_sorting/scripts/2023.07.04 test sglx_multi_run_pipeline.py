@@ -45,7 +45,7 @@ logName = 'ecephys_run_log.csv'
 
 # Raw data directory = npx_directory
 # run_specs = name, gate, trigger and probes to process
-npx_directory = r'G:\Neuropixels\Working_folder\Mikail_and_Joe\Week2'
+npx_directory = r'Y:\NP_test'
 
 # Each run_spec is a list of 4 strings:
 #   undecorated run name (no g/t specifier, the run field in CatGT)
@@ -58,7 +58,7 @@ npx_directory = r'G:\Neuropixels\Working_folder\Mikail_and_Joe\Week2'
 #           these strings must match a key in the param dictionaries above.
 
 run_specs = [									
-						['SC048_122920_ex', '0', '0,0', '0', ['cortex','cortex'] ]
+						['NP26_20200312_D14_imec0RB_imec1LB', '1', '0,0', '0,1', ['cortex','cortex'] ]
 ]
 
 # ------------------
@@ -67,7 +67,7 @@ run_specs = [
 # Set to an existing directory; all output will be written here.
 # Output will be in the standard SpikeGLX directory structure:
 # run_folder/probe_folder/*.bin
-catGT_dest = r'W:\out\Week2'
+catGT_dest = r'F:\ecephys_out'
 
 # ------------
 # CatGT params
@@ -160,7 +160,7 @@ modules = [
             'quality_metrics'
 			]
 
-json_directory = r'W:\json_files'
+json_directory = r'F:\ecephys_out\json_files'
 
 # -----------------------
 # -----------------------
