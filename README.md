@@ -108,9 +108,12 @@ Build the environment -- it will use the Pipfile located in this directory, and 
 ```
 
 On Anaconda or Miniconda using Windows if you get a TLs/SSL error when attempting to "pipenv install", copy:
-libcrypto-1_1-x64.*
+
+libcrypto-1_1-x64.* and 
 libssl-1_1-x64.*
-from \Anaconda3\Library\bin to \Anaconda3\DLLs.
+
+from ~\Anaconda3\Library\bin to ~\Anaconda3\DLLs.
+
 https://github.com/conda/conda/issues/9746
 
 ### Set up to run MATLAB from Python
@@ -229,7 +232,7 @@ NOTE: The pipeline is now compatible with the latest CatGT. If you are updating 
 
 ### Edit parameters for your system and runs
 
-Parameters are set in two files. Values that are constant across runs�like paths to code, parameters for sorting, etc � are set in **create_input_json.py**. Parameters that need to be set per run (run names, which triggers and probes to process�) are set in script files.
+Parameters are set in two files. Values that are constant across runslike paths to code, parameters for sorting, etc  are set in **create_input_json.py**. Parameters that need to be set per run (run names, which triggers and probes to process) are set in script files.
 
 In **create_input_json.py**, be sure to set these paths and parameters for your system:
 
@@ -416,4 +419,4 @@ This code is an important part of the internal Allen Institute code base and we 
 See [Allen Institute Terms of Use](https://alleninstitute.org/legal/terms-use/)
 
 
-© 2019 Allen Institute for Brain Science
+Â© 2019 Allen Institute for Brain Science
